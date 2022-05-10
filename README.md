@@ -1,11 +1,5 @@
 # Databases
 
-##Instructions
-- Connect to psql
-- Create the database using the psql command CREATE DATABASE bookmark_manager;
-- Connect to the database using the pqsl command \c bookmark_manager;
-- Copy the text in 01_create_bookmarks_table.sql and run it in psql. 
-
 ## User Story
 ```
 As a user
@@ -53,7 +47,7 @@ To view bookmarks, navigate to `localhost:3000/bookmarks`.
 
 ### To run tests:
 
-``` 
+```
 rspec
 ```
 
@@ -62,5 +56,3 @@ rspec
 ```
 rubocop
 ```
-
-
