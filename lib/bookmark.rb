@@ -1,9 +1,19 @@
+require 'pg'
+
 class Bookmark
   def self.all
-    [
-      "http://www.makersacademy.com",
-      "http://www.bbc.com",
-      "http://www.orangepippintrees.co.uk"
-    ]
+
+    array = []
+    
+    con = PG.connect :dbname => 'bookmark_manager'
+    
+    rs = con.exec "SELECT url FROM bookmarks"
+
+    rs.each do |row|
+      array << row['url']
+    end
+
+    return array
+
   end
 end
