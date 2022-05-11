@@ -10,6 +10,14 @@ describe Bookmark do
       expect(bookmarks).to include("https://www.bbc.co.uk")
     end
   end
+
+  describe '#.create' do
+    it 'adds a bookmark to the list' do
+      bookmark = Bookmark.create("website")
+      expect(Bookmark.all).to include("website")
+    end
+  end
+
 end
 
 # Test drive a refactor of the code to use a Model, that returns the list of bookmarks.

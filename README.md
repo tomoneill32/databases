@@ -6,6 +6,12 @@ As a user
 To be able to see my bookmarks
 I'd like to see a list of my bookmarks
 ```
+
+```
+As a user
+To create a list of websites I frequent
+I would like to be able to add urls to my list of bookmarks
+```
 <br>
 
 ## Domain Model
