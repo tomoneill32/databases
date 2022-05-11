@@ -4,11 +4,16 @@ class Bookmark
   def self.all
 
     array = []
-    
-    # con = PG.connect :dbname => 'bookmark_manager'
 
-    #  VVVVV this is added for step 9
-    con = PG.connect :dbname => 'bookmark_manager_test'
+    if ENV['RACK_ENV'] == 'test'
+    
+      con = PG.connect :dbname => 'bookmark_manager_test'
+
+    else
+
+      con = PG.connect :dbname => 'bookmark_manager'
+
+    end    
     
     rs = con.exec "SELECT url FROM bookmarks"
 
