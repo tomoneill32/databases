@@ -11,6 +11,6 @@ end
 def insert_bookmarks
   con = PG.connect :dbname => 'bookmark_manager_test'
 
-  con.exec "INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com'), ('https://www.bbc.co.uk'), ('http://www.destroyallsoftware.com')"
+  con.exec "INSERT INTO bookmarks (url, title) VALUES ('http://www.makersacademy.com', 'Makers'), ('https://www.bbc.co.uk', 'BBC'), ('http://www.destroyallsoftware.com', 'Destroy')"
 
 end

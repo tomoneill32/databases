@@ -5,6 +5,7 @@ describe Bookmark do
     it 'returns a list of bookmarks' do
       insert_bookmarks
       bookmarks = Bookmark.all
+      bookmarks = bookmarks.map { |bookmark| bookmark.url}
       expect(bookmarks).to include("http://www.makersacademy.com")
       expect(bookmarks).to include("http://www.destroyallsoftware.com")
       expect(bookmarks).to include("https://www.bbc.co.uk")
@@ -13,8 +14,9 @@ describe Bookmark do
 
   describe '#.create' do
     it 'adds a bookmark to the list' do
-      bookmark = Bookmark.create("website")
-      expect(Bookmark.all).to include("website")
+      bookmark = Bookmark.create("website", "title")
+      bookmarks = Bookmark.all.map { |bookmark| { url: bookmark.url, title: bookmark.title } }
+      expect(bookmarks).to include({url: "website", title: "title"})
     end
   end
 
