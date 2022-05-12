@@ -3,6 +3,8 @@ require 'sinatra/reloader'
 require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
+  enable :sessions
+
   configure :development do
     register Sinatra::Reloader
   end
@@ -25,6 +27,16 @@ class BookmarkManager < Sinatra::Base
     Bookmark.delete(params[:bookmark_to_delete])
     redirect '/bookmarks'
   end
+
+  post '/update_bookmark' do
+    session[:bookmark_to_update] = params[:bookmark_to_update] 
+    erb :'bookmarks/updated_bookmark'  
+  end
+
+  post '/updating' do 
+    Bookmark.update(session[:bookmark_to_update],params[:url], params[:title])
+    redirect '/bookmarks'
+  end 
 
   run! if app_file == $0
 end

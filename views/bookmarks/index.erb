@@ -13,7 +13,7 @@
 <br>
 <br>
 <form action="/delete_bookmark" method="post">
-  <label for="bookmark_to_delete">Choose a car:</label>
+  <label for="bookmark_to_delete">Choose a bookmark:</label>
 
   <select name="bookmark_to_delete" id="bookmark_to_delete">
     <% @bookmarks.each do |bookmark| %>
@@ -22,4 +22,16 @@
   </select>
 
   <input type="submit" value="Delete">
+</form>
+<br>
+<form action="/update_bookmark" method="post">
+  <label for="bookmark_to_update">Choose a bookmark:</label>
+
+  <select name="bookmark_to_update" id="bookmark_to_update">
+    <% @bookmarks.each do |bookmark| %>
+      <option value="<%= bookmark.id %>"><%= bookmark.title %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Update">
 </form>

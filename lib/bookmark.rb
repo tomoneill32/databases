@@ -37,7 +37,7 @@ class Bookmark
       con = PG.connect :dbname => 'bookmark_manager'
     end
     
-    con.exec_params( "INSERT INTO bookmarks(url, title) VALUES ($1, $2);", [website, title] )
+    con.exec_params( "INSERT INTO bookmarks(url, title) VALUES ($1, $2) RETURNING id; ", [website, title] )
   end
 
   def self.delete(id)
@@ -50,4 +50,13 @@ class Bookmark
     con.exec_params( "DELETE FROM bookmarks WHERE id = ($1);", [id] )
   end
 
+  def self.update(old_id, new_url, new_title)
+    if ENV['RACK_ENV'] == 'test'
+      con = PG.connect :dbname => 'bookmark_manager_test'
+    else
+      con = PG.connect :dbname => 'bookmark_manager'
+    end    
+
+    con.exec_params( "UPDATE bookmarks SET url = ($1), title = ($2) WHERE id= ($3) ;", [new_url , new_title, old_id] )
+  end
 end
