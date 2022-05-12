@@ -20,7 +20,14 @@ describe Bookmark do
     end
   end
 
+  describe '#.delete' do
+    it 'deletes a bookmark from the list' do
+      insert_bookmarks
+      bookmarks = Bookmark.all
+      id = bookmarks[2].id
+      Bookmark.delete(id)
+      bookmarks = Bookmark.all.map { |bookmark| bookmark.url }
+      expect(bookmarks).not_to include("http://www.destroyallsoftware.com")
+    end
+  end
 end
-
-# Test drive a refactor of the code to use a Model, that returns the list of bookmarks.
-# You'll probably want to create a Bookmark model that responds to the class method .all with a hard-coded array of Bookmark instances.

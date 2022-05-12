@@ -5,7 +5,21 @@
 </ul>
 
 <form action="/add_bookmark" method="post">
-  <input type="text" name="url" />
-  <input type="text" name="title">
+  URL<input type="text" name="url" /><br>
+  Title<input type="text" name="title"><br>
   <input type="submit" value="Add">
+</form>
+<br>
+<br>
+<br>
+<form action="/delete_bookmark" method="post">
+  <label for="bookmark_to_delete">Choose a car:</label>
+
+  <select name="bookmark_to_delete" id="bookmark_to_delete">
+    <% @bookmarks.each do |bookmark| %>
+      <option value="<%= bookmark.id %>"><%= bookmark.title %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Delete">
 </form>
